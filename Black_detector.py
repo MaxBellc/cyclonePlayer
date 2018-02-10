@@ -29,7 +29,7 @@ if __name__ == '__main__':
 
 
     cap = cv2.VideoCapture(fn)
-
+    cap = cv2.resize(cap (600, 600),cv2.INTER_AREA) 
 
     cv2.namedWindow('image')
     thrs=50
