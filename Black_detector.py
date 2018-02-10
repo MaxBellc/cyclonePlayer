@@ -31,8 +31,7 @@ if __name__ == '__main__':
     cap = cv2.VideoCapture(fn)
 
 
-    cv2.namedWindow('image', cv2.WINDOW_NORMAL)
-    cv2.resizeWindow('image',600,600)
+    cv2.namedWindow('image')
     thrs=50
     cv2.createTrackbar('r', 'image', 81, 255-thrs, nothing)
     cv2.createTrackbar('g', 'image', 57, 255-thrs, nothing)
@@ -40,7 +39,7 @@ if __name__ == '__main__':
     cv2.createTrackbar('thresh', 'image', 8, 100, nothing) 
 
    #sets how much to blur
-    filt=11
+    filt=39
 
     while True:
         flag, img = cap.read()
@@ -82,22 +81,22 @@ if __name__ == '__main__':
         #print(splotch)
         
         # loop over the contours
-##        for c in cnts:
-##        
-##            i=i+1
-##            M = cv2.moments(c)
-##            splotch[0][i] = int(M["m00"])
-##        try:
-##            max1=np.argmax(splotch)
-##        except:
-##            max1=-1
-##        print(max1)
-##        original=vis.copy()
-##        
-##        if max1>-1:
-##            M = cv2.moments(cnts[max1])
-##            cX = int(M["m10"] / M["m00"])
-##            cY = int(M["m01"] / M["m00"])
+        for c in cnts:
+        
+            i=i+1
+            M = cv2.moments(c)
+            splotch[0][i] = int(M["m00"])
+        try:
+            max1=np.argmax(splotch)
+        except:
+            max1=-1
+        print(max1)
+        original=vis.copy()
+        
+        if max1>-1:
+            M = cv2.moments(cnts[max1])
+            cX = int(M["m10"] / M["m00"])
+            cY = int(M["m01"] / M["m00"])
 
 
             
