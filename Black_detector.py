@@ -10,7 +10,10 @@ from __future__ import print_function
 
 import cv2
 import numpy as np
+from difflib import SequenceMatcher
 
+def similar(a, b):
+    return SequenceMatcher(None, a, b).ratio()
 # relative module
 #import video
 
@@ -122,11 +125,12 @@ if __name__ == '__main__':
 			raise
 		except cv2.error as e:
 
-                        print("Here it is \n",str(e), "\n")
-                        if str(e)==" /home/pi/opencv-3.3.0/modules/imgproc/src/imgwarp.cpp:3483: error: (-215) ssize.width > 0 && ssize.height > 0 in function resize":
-                            print("\n\n\n\n Your video appears to have ended\n\n\n")
-                        raise
-		     					
+			print("Here it is \n",str(e), "\n")
+				print(similar(str(e), " /home/pi/opencv-3.3.0/modules/imgproc/src/imgwarp.cpp:3483: error: (-215) ssize.width > 0 && ssize.height > 0 in function resize"))
+			if similar(str(e), " /home/pi/opencv-3.3.0/modules/imgproc/src/imgwarp.cpp:3483: error: (-215) ssize.width > 0 && ssize.height > 0 in function resize")>.8:
+				print("\n\n\n\n Your video appears to have ended\n\n\n")
+			raise
+								
 	cv2.destroyAllWindows()
 
 
@@ -144,5 +148,5 @@ if __name__ == '__main__':
 
 
 
-        
-    
+		
+	
